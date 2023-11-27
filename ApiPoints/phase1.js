@@ -2,7 +2,8 @@ import { pool } from "../connectDb.js"
 
 export async function getItemsFromWishlist(req, res) {
     const result = await pool.query('SELECT * FROM list_items')
-    res.status(200).send(result)
+    const items = result.rows // extract rows from result
+    res.status(200).json(items)
 }
 
 export async function addItemToWishlist( req, res ) {
@@ -13,8 +14,11 @@ export async function addItemToWishlist( req, res ) {
         VALUES ('${name}', '${itemLink}', ${price}, false);`)
 
     const allItems = await pool.query('SELECT * FROM list_items')
-    res.send(allItems.rows)//sends as an array
+    const items = allItems.rows
+    res.status(200).json(items)
+
 
 }
 
 // will need app.patch to set items as purchased
+//will need app.delete to remove items (only users)
