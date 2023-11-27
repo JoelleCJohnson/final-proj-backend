@@ -10,6 +10,9 @@ app.use(cors({
     origin: ['http://localhost:3001', 'http://localhost:3000']
 }))
 
+//handle preflight OPTIONS reqs for root route
+app.options('/', cors()); 
+
 //phase 1, add and get items from wishlist
 app.get('/', getItemsFromWishlist)
 app.post('/', addItemToWishlist)

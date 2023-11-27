@@ -13,7 +13,7 @@ export async function addItemToWishlist( req, res ) {
         VALUES ('${name}', '${itemLink}', ${price}, false);`)
 
     const allItems = await pool.query('SELECT * FROM list_items')
-    res.send(allItems)
+    res.send(allItems.rows)//sends as an array
 
 }
 
