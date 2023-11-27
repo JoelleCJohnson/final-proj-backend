@@ -6,7 +6,9 @@ const PORT = process.env.PORT || 3000
 const app = express();
 
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: ['http://localhost:3001', ]
+}))
 
 //phase 1, add and get items from wishlist
 app.get('/', getItemsFromWishlist)
