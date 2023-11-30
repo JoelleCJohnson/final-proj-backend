@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { getItemsFromWishlist, addItemToWishlist } from "./ApiPoints/phase1.js";
-import { signup } from "./ApiPoints/signup.js"
+import { signup, login } from "./ApiPoints/signup.js"
 
 const PORT = process.env.PORT || 3000
 const app = express();
@@ -19,5 +19,6 @@ app.get('/', getItemsFromWishlist)
 app.post('/', addItemToWishlist)
 
 app.post('/signup', signup)
+app.post('/login', login)
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`))
