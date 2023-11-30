@@ -1,7 +1,8 @@
 import { pool } from "../connectDb.js"
 
 export async function getItemsFromWishlist(req, res) {
-    const result = await pool.query('SELECT * FROM list_items')
+    const client = await pool.connect()
+    const result = await client.query('SELECT * FROM list_items')
     const items = result.rows // extract rows from result
     res.status(200).json(items)
 }

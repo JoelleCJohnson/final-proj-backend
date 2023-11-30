@@ -9,15 +9,19 @@ export async function signup(req, res) {
         return;
     }
     const hashedPw= await bcrypt.hash(password, 10)
-    await pool.query(`INSERT INTO users (firstName, lastName, email, password, streetAddress, city, state, zipCode)
-    VALUES ('${firstName}', '${lastName}', '${email.toLowerCase()}', '${hashedPw}', '${streetAddress}', '${city}, '${state}', '${zipCode}');`)
+    const client = await pool.connect()
+
+    const query = `INSERT INTO users (firstName, lastName, email, password, streetAddress, city, state, zipCode)
+    VALUES ('${firstName}', '${lastName}', '${email.toLowerCase()}', '${hashedPw}', '${streetAddress}', '${city}', '${state}', '${zipCode}');`
+    
+    await client.query(query)
     login(req,res)
 }
 
 export async function login(req, res) {
     const { email, password } = req.body
-    const userColl = await pool.query(`SELECT email, password FROM users WHERE email='${email.toLowerCase()}';`)
-    const users = userColl.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    const userColl = await pool.query(`SELECT * FROM users WHERE email='${email.toLowerCase()}';`)
+    const users = userColl.rows
     const user = users.filter(user => bcrypt.compareSync(password, user.password))[0];
     if(!user){
         res.status(400).send({ message: "Not Authorized"})

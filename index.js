@@ -15,10 +15,10 @@ app.use(cors({
 app.options('/', cors()); 
 
 //phase 1, add and get items from wishlist
-app.get('/', getItemsFromWishlist)
-app.post('/', addItemToWishlist)
+app.get('/dashboard', getItemsFromWishlist)
+app.post('/dashboard', addItemToWishlist)
 
-app.post('/signup', signup)
+app.post('/', signup)
 app.post('/login', login)
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`))
