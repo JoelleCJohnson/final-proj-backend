@@ -13,7 +13,7 @@ export async function signup(req, res) {
 
     const query = `INSERT INTO users (firstName, lastName, email, password, streetAddress, city, state, zipCode)
     VALUES ('${firstName}', '${lastName}', '${email.toLowerCase()}', '${hashedPw}', '${streetAddress}', '${city}', '${state}', '${zipCode}');`
-    
+
     await client.query(query)
     login(req,res)
 }
