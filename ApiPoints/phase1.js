@@ -21,5 +21,3 @@ export async function addItemToWishlist( req, res ) {
 
 }
 
-// will need app.patch to set items as purchased
-//will need app.delete to remove items (only users)

@@ -14,10 +14,18 @@ app.use(cors({
 //handle preflight OPTIONS reqs for root route
 app.options('/', cors()); 
 
+
 //phase 1, add and get items from wishlist
 app.get('/dashboard', getItemsFromWishlist)
 app.post('/dashboard', addItemToWishlist)
 
+
+//update and delete wishlist items:
+app.patch('/dashboard', updateListItem)
+app.delete('/dashboard', deleteListItem)
+
+
+//signup and login
 app.post('/', signup)
 app.post('/login', login)
 
