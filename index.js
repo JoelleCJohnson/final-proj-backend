@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json())
 app.use(cors({
-    origin: ['http://localhost:3001', 'http://localhost:3000', 'https://holiday-wishlist-jj.ue.r.appspot.com/']
+    origin: ['http://localhost:3001', 'http://localhost:3000', 'https://final-project-630f3.web.app']
 }))
 
 //handle preflight OPTIONS reqs for root route
