@@ -2,8 +2,9 @@ import express from "express"
 import cors from "cors"
 import { getItemsFromWishlist, addItemToWishlist } from "./ApiPoints/phase1.js";
 import { signup, login } from "./ApiPoints/signup.js"
+import { updateIsPurchased, deleteListItem } from "./ApiPoints/updateAndDeleteItems.js";
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 const app = express();
 
 app.use(express.json())
@@ -21,7 +22,7 @@ app.post('/dashboard', addItemToWishlist)
 
 
 //update and delete wishlist items:
-app.patch('/dashboard', updateListItem)
+app.patch('/dashboard', updateIsPurchased)
 app.delete('/dashboard', deleteListItem)
 
 
