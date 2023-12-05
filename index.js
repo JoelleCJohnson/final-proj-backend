@@ -1,8 +1,9 @@
 import express from "express"
 import cors from "cors"
-import { getItemsFromWishlist, addItemToWishlist } from "./ApiPoints/phase1.js";
-import { signup, login } from "./ApiPoints/signup.js"
+import { getItemsFromWishlist, addItemToWishlist } from "./ApiPoints/getAndAddItems.js";
+import { signup, login } from "./ApiPoints/signupAndLogin.js"
 import { updateIsPurchased, deleteListItem } from "./ApiPoints/updateAndDeleteItems.js";
+import { isAuthenticated } from "./ApiPoints/middleware.js";
 
 const PORT = process.env.PORT || 3001
 const app = express();
@@ -17,13 +18,13 @@ app.options('/', cors());
 
 
 //phase 1, add and get items from wishlist
-app.get('/dashboard', getItemsFromWishlist)
-app.post('/dashboard', addItemToWishlist)
+app.get('/dashboard', isAuthenticated, getItemsFromWishlist)
+app.post('/dashboard', isAuthenticated, addItemToWishlist)
 
 
 //update and delete wishlist items:
 app.patch('/dashboard', updateIsPurchased)
-app.delete('/dashboard', deleteListItem)
+app.delete('/dashboard', isAuthenticated, deleteListItem)
 
 
 //signup and login
