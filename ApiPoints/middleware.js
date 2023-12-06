@@ -13,7 +13,6 @@ export async function isAuthenticated(req, res, next) {
             return
         }
         req.locals = decoded
-console.log('*****AUTHENTICATED*****')
         next()
     })
 }
