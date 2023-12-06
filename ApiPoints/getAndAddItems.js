@@ -3,6 +3,7 @@ import { pool } from "../connectDb.js"
 export async function getItemsFromWishlist(req, res) {
     const client = await pool.connect()
     const { userid } = req.locals
+    console.log('GETTING ITEMS FOR:', userid)
     const result = await client.query(`SELECT * FROM list_items
     WHERE userid = '${userid}';`)
     const items = result.rows // extract rows from result
@@ -12,7 +13,7 @@ export async function getItemsFromWishlist(req, res) {
 export async function addItemToWishlist( req, res ) {
 
     const { name, itemLink, price} = req.body
-
+    const { userid } = req.locals
     await pool.query(`INSERT INTO list_items (itemName, itemLink, itemPrice, isPurchased, userid)
         VALUES ('${name}', '${itemLink}', ${price}, false, '${userid}');`)
 
