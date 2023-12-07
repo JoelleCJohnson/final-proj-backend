@@ -4,7 +4,7 @@ import { getItemsFromWishlist, addItemToWishlist } from "./ApiPoints/getAndAddIt
 import { signup, login } from "./ApiPoints/signupAndLogin.js"
 import { updateIsPurchased, deleteListItem } from "./ApiPoints/updateAndDeleteItems.js";
 import { isAuthenticated } from "./ApiPoints/middleware.js";
-import { getFriendsWishlist } from "./ApiPoints/sharedLists.js";
+import { getFriendsInformation, getFriendsWishlist } from "./ApiPoints/sharedLists.js";
 
 
 const PORT = process.env.PORT || 3001
@@ -35,6 +35,7 @@ app.post('/', signup)
 app.post('/login', login)
 
 //accessing friends wishlists
-app.post('/share/:userid', getFriendsWishlist)
+app.get('/share/:userid', getFriendsWishlist)
+app.get('/info/:userid', getFriendsInformation)
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`))
