@@ -9,3 +9,12 @@ export async function getFriendsWishlist(req, res) {
     const items = result.rows
     res.status(200).send(items)
 }
+
+export async function getFriendsInformation(req, res){
+    const client = await pool.connect()
+    const userid = req.params.userid
+    const result = await client.query(`SELECT * FROM users
+    WHERE userid = '${userid}';`)
+    const items = result.rows
+    res.status(200).send(items)
+}
