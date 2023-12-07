@@ -1,5 +1,5 @@
 import { pool } from "../connectDb.js";
-import { getItemsFromWishlist } from "./phase1.js";
+import { getItemsFromWishlist } from "./getAndAddItems.js";
 
 export async function updateIsPurchased(req, res) { // add isUser middleware
     const listid = req.body.id
