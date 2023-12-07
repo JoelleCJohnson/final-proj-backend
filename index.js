@@ -35,6 +35,6 @@ app.post('/', signup)
 app.post('/login', login)
 
 //accessing friends wishlists
-app.post('/share/:userid', getFriendsWishlist)
+app.get('/share/:userid', getFriendsWishlist)
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`))
