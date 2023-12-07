@@ -21,5 +21,6 @@ export async function addItemToWishlist( req, res ) {
     // const items = allItems.rows
 
     getItemsFromWishlist(req,res)
+
 }
 
