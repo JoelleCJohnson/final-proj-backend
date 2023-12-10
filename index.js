@@ -7,7 +7,7 @@ import { isAuthenticated } from "./ApiPoints/middleware.js";
 import { getFriendsInformation, getFriendsWishlist } from "./ApiPoints/sharedLists.js";
 
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 const app = express();
 
 app.use(cors({
@@ -26,8 +26,8 @@ app.post('/dashboard', isAuthenticated, addItemToWishlist)
 
 
 //update and delete wishlist items:
-app.patch('/dashboard', updateIsPurchased)
-app.delete('/dashboard', isAuthenticated, deleteListItem)
+app.patch('/dashboard/:userid/:listid', updateIsPurchased)
+app.delete('/dashboard/:listid', isAuthenticated, deleteListItem)
 
 
 //signup and login
