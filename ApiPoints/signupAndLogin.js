@@ -20,7 +20,7 @@ export async function signup(req, res) {
 
 export async function login(req, res) {
     const { email, password } = req.body
-    const userColl = await pool.query(`SELECT * FROM users WHERE email='${email.toLowerCase()}';`)
+    const userColl = await pool.query(`SELECT * FROM users WHERE email='${email.toLowerCase()}' LIMIT 1;`)
     const users = userColl.rows
     const user = users.filter(user => bcrypt.compareSync(password, user.password))[0];
     if(!user){
